@@ -1,0 +1,202 @@
+@import 'tailwindcss';
+
+:root {
+  font-size: 18px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+    'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Default to dark theme */
+  color-scheme: dark;
+  --color-primary: #042743;
+  --color-secondary: #13466e;
+  --color-accent: #2ec4b6;
+  --color-text: #eaf6ff;
+  --color-card: #0b3557;
+  --color-bg: radial-gradient(circle at top, #0b3557 0, #020617 45%, #000814 100%);
+}
+
+.theme-light {
+  color-scheme: light;
+  --color-primary: #f8fbff;
+  --color-secondary: #dceeff;
+  /* --color-accent: #13466e; */
+  --color-accent: #4FA3D1;
+  --color-text: #042743;
+  --color-card: #ffffff;
+  --color-bg: radial-gradient(circle at top, #e5f1ff 0, #f8fbff 45%, #e2ebff 100%);
+}
+
+.theme-dark {
+  color-scheme: dark;
+  --color-primary: #042743;
+  --color-secondary: #13466e;
+  --color-accent: #2ec4b6;
+  --color-text: #eaf6ff;
+  --color-card: #0b3557;
+  --color-bg: radial-gradient(circle at top, #0b3557 0, #020617 45%, #000814 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 18px;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+#root {
+  font-size: 18px;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.glass-card {
+  background: color-mix(in srgb, var(--color-card) 75%, transparent);
+  border-radius: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.glass-card-soft {
+  background: color-mix(in srgb, var(--color-card) 60%, transparent);
+  border-radius: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow:
+    0 22px 55px rgba(3, 7, 18, 0.8),
+    0 0 0 1px rgba(15, 23, 42, 0.7);
+}
+
+.soft-shadow {
+  box-shadow:
+    0 18px 35px rgba(15, 23, 42, 0.7),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+}
+
+.text-gradient-primary {
+  background-image: linear-gradient(
+    135deg,
+    #C43027,
+    #D97B2D,
+    #EFC634
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: -120%;
+  background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.55), transparent 55%);
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.btn-glow:hover::before {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  mix-blend-mode: screen;
+}
+
+.cursor-glow-orb {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(46, 196, 182, 0.55), transparent 60%);
+  filter: blur(18px);
+  opacity: 0.35;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.noise-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  opacity: 0.07;
+  mix-blend-mode: soft-light;
+  background-image: url('data:image/svg+xml,%3Csvg viewBox=\"0 0 160 160\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"n\" x=\"0\" y=\"0\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"1.2\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23n)\" opacity=\"0.3\"/%3E%3C/svg%3E');
+}
+
+.scroll-snap-y {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+.scroll-snap-section {
+  scroll-snap-align: start;
+}
+
+/* Light mode text contrast tweaks */
+.theme-light body {
+  color: var(--color-text);
+}
+
+.theme-light .text-slate-50,
+.theme-light .text-slate-100,
+.theme-light .text-slate-200,
+.theme-light .text-slate-300 {
+  color: #042743;
+}
+
+.theme-light .text-slate-400 {
+  color: #13466e;
+}
+
+.hero-badge-text {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.theme-dark .hero-badge-text {
+  color: #eaf6ff;
+  text-shadow:
+    0 0 6px rgba(15, 23, 42, 0.9),
+    0 0 18px rgba(15, 23, 42, 0.9);
+}
+
+.theme-light .hero-badge-text {
+  color: #ffffff !important;
+  background-color: transparent !important;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+}
