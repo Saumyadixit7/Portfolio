@@ -74,7 +74,7 @@ function ProjectsSection({
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               <div className="absolute bottom-3 left-3 flex items-center gap-2 text-[0.7rem] text-slate-100">
-                <span className="rounded-full bg-black/60 px-2 py-0.5">
+                <span className="rounded-full bg-black/60 px-2 py-0.5 text-white">
                   {project.category}
                 </span>
               </div>
